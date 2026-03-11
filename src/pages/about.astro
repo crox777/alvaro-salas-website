@@ -1,8 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import alvaroPhoto from '../assets/alvaro-salas-off.png';
 ---
 
-<BaseLayout title="About" description="Dr. Alvaro A. Salas-Castro — President & CEO of The Reynolds Foundation, Cornell lecturer, and advocate for making freedom investible.">
+<BaseLayout title="About" description="Dr. Alvaro A. Salas-Castro: President & CEO of The Reynolds Foundation, Cornell lecturer, and advocate for making freedom investible.">
 	<div class="mx-auto max-w-4xl px-6 py-16">
 		<header class="mb-16">
 			<h1 class="text-4xl font-bold md:text-5xl">About</h1>
@@ -11,21 +13,32 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 			</p>
 		</header>
 
-		<!-- Bio -->
-		<section class="prose max-w-none">
-			<p class="text-lg leading-relaxed text-text">
-				Dr. Alvaro A. Salas-Castro is the President & CEO of The Reynolds Foundation and the Reynolds
-				Family Office, where he leads a mission to make freedom investible. Under his leadership, the
-				Foundation has funded 90+ organizations across 62+ countries, deploying over $60 million to
-				advance democratic governance, rule of law, and institutional reform.
-			</p>
-			<p class="text-lg leading-relaxed text-text">
-				A Costa Rican-born lawyer, economist, and public policy scholar, Alvaro's career spans
-				government advising, international development, and academic leadership. He serves as a
-				Lecturer at Cornell's Jeb E. Brooks School of Public Policy, teaching "Navigating
-				Public-Private Partnerships," and holds affiliate faculty positions at Syracuse University's
-				Maxwell School and INCAE Business School.
-			</p>
+		<!-- Photo + Bio -->
+		<section class="grid gap-12 md:grid-cols-[280px_1fr] items-start">
+			<div class="relative">
+				<Image
+					src={alvaroPhoto}
+					alt="Dr. Alvaro A. Salas-Castro"
+					width={280}
+					class="w-full rounded-sm border border-border"
+				/>
+				<div class="absolute inset-0 rounded-sm border border-amber/10 pointer-events-none"></div>
+			</div>
+			<div class="prose max-w-none">
+				<p class="text-lg leading-relaxed text-text">
+					Dr. Alvaro A. Salas-Castro is the President & CEO of The Reynolds Foundation and the Reynolds
+					Family Office, where he leads a mission to make freedom investible. Under his leadership, the
+					Foundation has funded 90+ organizations across 62+ countries, deploying over $60 million to
+					advance freedom, rule of law, and democratic governance.
+				</p>
+				<p class="text-lg leading-relaxed text-text">
+					A Costa Rican-born lawyer, economist, and public policy scholar, Alvaro's career spans
+					government advising, international development, and academic leadership. He serves as a
+					Lecturer at Cornell's Jeb E. Brooks School of Public Policy, teaching "Navigating
+					Public-Private Partnerships," and holds affiliate faculty positions at Syracuse University's
+					Maxwell School and INCAE Business School.
+				</p>
+			</div>
 		</section>
 
 		<!-- Timeline -->
@@ -58,8 +71,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 			<div class="space-y-4">
 				{[
 					{ degree: 'Ph.D., Administration, International Affairs & Public Policy', school: 'Syracuse University (Maxwell School)' },
-					{ degree: 'MPA, Science, Technology & Infrastructure', school: 'Cornell University — Highest Honors' },
-					{ degree: 'MBA, Finance, Economics & Sustainable Development', school: 'INCAE Business School — Leaders for Change Scholar' },
+					{ degree: 'MPA, Science, Technology & Infrastructure', school: 'Cornell University, Highest Honors' },
+					{ degree: 'MBA, Finance, Economics & Sustainable Development', school: 'INCAE Business School, Leaders for Change Scholar' },
 					{ degree: 'J.D. (Law)', school: 'Autonomous University of Central America' },
 					{ degree: 'B.A., International Relations', school: 'Universidad Latina' },
 				].map(({ degree, school }) => (
@@ -93,12 +106,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		<section class="mt-20 rounded-sm border border-amber/20 bg-amber/5 p-8">
 			<h2 class="text-2xl font-bold text-amber">Origin Story</h2>
 			<p class="mt-4 leading-relaxed text-text-secondary">
-				As a young Costa Rican lawyer with an MBA, Alvaro crowdfunded $100,000 on Rally.org to attend
-				Cornell's MPA program — the university covered 70% of tuition. He sent donors semi-annual
-				reports on his progress. His campaign — "Alvaro Salas' Education Funding for a Peaceful Central
-				America" — became a case study in crowdfunding an Ivy League education. From there, he went on
-				to advise governments, consult for the United Nations and Inter-American Development Bank, and
-				ultimately lead The Reynolds Foundation in its mission to make freedom investible.
+				As a young Costa Rican lawyer with an MBA, Alvaro crowdfunded his way to Cornell's MPA
+				program. His campaign became a case study in crowdfunding an Ivy League education. From there,
+				he went on to advise governments, consult for the United Nations and Inter-American Development
+				Bank, and ultimately lead The Reynolds Foundation in its mission to make freedom investible.
 			</p>
 		</section>
 	</div>

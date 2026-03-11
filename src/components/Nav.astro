@@ -11,25 +11,37 @@ const links = [
 ];
 ---
 
-<nav class="fixed top-0 left-0 right-0 z-50 border-b border-border bg-bg/80 backdrop-blur-md">
-	<div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-		<a href="/" class="font-heading text-lg font-bold tracking-tight text-text hover:text-amber transition-colors">
-			Alvaro Salas
+<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+	<!-- Gradient bottom border (appears on scroll) -->
+	<div id="nav-border" class="absolute bottom-0 left-0 right-0 h-px opacity-0 transition-opacity duration-500" style="background: linear-gradient(90deg, transparent, rgba(255,184,0,0.2) 20%, rgba(255,184,0,0.2) 80%, transparent);"></div>
+
+	<div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+		<!-- Logo -->
+		<a href="/" class="group flex items-center gap-3">
+			<div class="flex h-8 w-8 items-center justify-center bg-amber text-bg text-xs font-bold tracking-tight transition-all group-hover:shadow-[0_0_20px_rgba(255,184,0,0.3)]">
+				AS
+			</div>
+			<span class="font-heading text-sm font-bold tracking-tight text-text hidden sm:block">
+				Alvaro Salas
+			</span>
 		</a>
 
 		<!-- Desktop nav -->
-		<div class="hidden items-center gap-8 md:flex">
+		<div class="hidden items-center gap-1 md:flex">
 			{links.map(({ href, label }) => (
 				<a
 					href={href}
 					class:list={[
-						'text-sm font-medium transition-colors',
+						'relative px-3 py-1.5 text-xs font-semibold uppercase tracking-wider transition-colors',
 						currentPath.startsWith(href)
 							? 'text-amber'
 							: 'text-text-secondary hover:text-text',
 					]}
 				>
 					{label}
+					{currentPath.startsWith(href) && (
+						<span class="absolute bottom-0 left-3 right-3 h-px bg-amber"></span>
+					)}
 				</a>
 			))}
 		</div>
@@ -37,23 +49,24 @@ const links = [
 		<!-- Mobile menu button -->
 		<button
 			id="mobile-menu-btn"
-			class="flex items-center justify-center md:hidden"
+			class="relative flex h-8 w-8 items-center justify-center md:hidden"
 			aria-label="Toggle menu"
 		>
-			<svg class="h-6 w-6 text-text" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-			</svg>
+			<div id="hamburger" class="space-y-1.5 transition-all">
+				<span class="block h-px w-5 bg-text transition-all origin-center"></span>
+				<span class="block h-px w-3.5 bg-text transition-all ml-auto"></span>
+			</div>
 		</button>
 	</div>
 
 	<!-- Mobile menu -->
-	<div id="mobile-menu" class="hidden border-t border-border bg-bg md:hidden">
-		<div class="flex flex-col px-6 py-4 gap-4">
+	<div id="mobile-menu" class="hidden bg-bg/95 backdrop-blur-xl md:hidden border-t border-amber/10">
+		<div class="flex flex-col px-6 py-6 gap-1">
 			{links.map(({ href, label }) => (
 				<a
 					href={href}
 					class:list={[
-						'text-sm font-medium transition-colors',
+						'py-3 text-sm font-semibold uppercase tracking-wider transition-colors border-b border-border/50',
 						currentPath.startsWith(href)
 							? 'text-amber'
 							: 'text-text-secondary hover:text-text',
@@ -67,8 +80,28 @@ const links = [
 </nav>
 
 <script>
+	const nav = document.getElementById('main-nav');
+	const navBorder = document.getElementById('nav-border');
 	const btn = document.getElementById('mobile-menu-btn');
 	const menu = document.getElementById('mobile-menu');
+
+	// Scroll-aware nav background
+	let lastScroll = 0;
+	window.addEventListener('scroll', () => {
+		const scrollY = window.scrollY;
+		if (scrollY > 50) {
+			nav?.classList.add('bg-bg/90', 'backdrop-blur-xl');
+			navBorder?.classList.remove('opacity-0');
+			navBorder?.classList.add('opacity-100');
+		} else {
+			nav?.classList.remove('bg-bg/90', 'backdrop-blur-xl');
+			navBorder?.classList.add('opacity-0');
+			navBorder?.classList.remove('opacity-100');
+		}
+		lastScroll = scrollY;
+	});
+
+	// Mobile menu toggle
 	btn?.addEventListener('click', () => {
 		menu?.classList.toggle('hidden');
 	});

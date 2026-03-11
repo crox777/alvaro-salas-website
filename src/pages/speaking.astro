@@ -7,7 +7,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		<header class="mb-16">
 			<h1 class="text-4xl font-bold md:text-5xl">Speaking</h1>
 			<p class="mt-4 text-xl text-text-secondary">
-				Keynotes, panels, and presentations on freedom investing, democratic resilience, and the moral case for institutional reform.
+				Keynotes, panels, and presentations on freedom investing, free institutions, and the moral case for classical liberal reform.
 			</p>
 		</header>
 
@@ -18,11 +18,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 				{[
 					{
 						title: 'The Mispricing of Freedom',
-						desc: 'Why less than 1% of philanthropy goes to democracy — and how to fix it. A manifesto for freedom investing.',
+						desc: 'Why less than 1% of philanthropy goes to freedom and democracy, and how to fix it. A manifesto for freedom investing.',
 					},
 					{
 						title: 'Freedom Alpha',
-						desc: 'How democratic outcomes create measurable market returns. Adding "F" to ESG for family offices and institutional investors.',
+						desc: 'How freedom and democratic outcomes create measurable market returns. Adding "F" to ESG for family offices and institutional investors.',
 					},
 					{
 						title: 'Building Coalitions for Liberty',
@@ -34,11 +34,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 					},
 					{
 						title: 'From Costa Rica to Cornell',
-						desc: 'Crowdfunding an Ivy League education, advising governments, and leading a foundation — a story of conviction.',
+						desc: 'Crowdfunding an Ivy League education, advising governments, and leading a foundation. A story of conviction.',
 					},
 					{
 						title: 'The Next Generation of Freedom Funding',
-						desc: 'Bitcoin, stablecoins, and technology as tools for democratic resilience in authoritarian contexts.',
+						desc: 'Bitcoin, stablecoins, and technology as tools for liberty in authoritarian contexts.',
 					},
 				].map(({ title, desc }) => (
 					<div class="rounded-sm border border-border bg-surface p-5">
@@ -64,7 +64,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 					<div class="flex items-center justify-between rounded-sm border border-border bg-surface px-5 py-3">
 						<div>
 							<span class="font-bold">{event}</span>
-							<span class="ml-2 text-xs text-text-secondary">— {role}</span>
+							<span class="ml-2 text-xs text-text-secondary">· {role}</span>
 						</div>
 						<span class="text-xs text-text-secondary hidden md:block">{note}</span>
 					</div>

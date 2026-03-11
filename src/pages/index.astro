@@ -1,10 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContentCard from '../components/ContentCard.astro';
+import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import alvaroPhoto from '../assets/alvaro-salas-off.png';
 
-// Get latest content across all collections
 const ideas = await getCollection('ideas');
 const talks = await getCollection('talks');
 const podcasts = await getCollection('podcasts');
@@ -21,146 +22,322 @@ const latest = allContent.sort((a, b) => b.date.valueOf() - a.date.valueOf()).sl
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-	<div class="mx-auto max-w-6xl px-6">
-		<!-- Hero -->
-		<section class="py-24 md:py-32">
-			<p class="mb-4 text-sm font-semibold uppercase tracking-wider text-amber">President & CEO, The Reynolds Foundation</p>
-			<h1 class="text-5xl font-bold leading-[1.1] md:text-7xl">
-				Alvaro<br />Salas-Castro
-			</h1>
-			<p class="mt-6 max-w-xl text-xl text-text-secondary">
-				Making Freedom Investible.
-			</p>
 
-			<!-- Stats -->
-			<div class="mt-10 flex flex-wrap gap-8 border-t border-border pt-8">
+	<!-- ═══════════════════════════════════════════════════════════ -->
+	<!-- HERO — Thesis-first, Gladstein model                       -->
+	<!-- ═══════════════════════════════════════════════════════════ -->
+	<section class="relative min-h-[85vh] flex items-center overflow-hidden">
+		<!-- Ambient orbs -->
+		<div class="orb orb-amber w-[600px] h-[600px] -top-40 -right-40 opacity-60" aria-hidden="true"></div>
+		<div class="orb orb-red w-[400px] h-[400px] bottom-20 -left-20 opacity-40" aria-hidden="true"></div>
+
+		<!-- Grid pattern overlay -->
+		<div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(rgba(255,184,0,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,184,0,0.3) 1px, transparent 1px); background-size: 60px 60px;" aria-hidden="true"></div>
+
+		<div class="relative mx-auto max-w-6xl px-6 py-32 md:py-0">
+			<div class="grid md:grid-cols-[1fr_auto] md:gap-16 items-center">
 				<div>
-					<span class="text-3xl font-bold text-amber">90+</span>
-					<p class="text-sm text-text-secondary">Organizations Funded</p>
+					<!-- Thesis as headline -->
+					<h1 class="reveal text-5xl font-bold leading-[1.05] tracking-tight md:text-7xl lg:text-8xl">
+						Freedom,<br/>
+						<span class="gradient-text italic">Democracy,</span><br/>
+						and Making<br class="hidden md:block" />
+						it Investible.
+					</h1>
+
+					<!-- Description -->
+					<p class="reveal reveal-delay-1 mt-8 max-w-xl text-lg text-text-secondary md:text-xl leading-relaxed">
+						Research, writing, and advocacy on why freedom is the most mispriced asset in philanthropy, and how family offices can invest in institutional resilience.
+					</p>
+
+					<!-- Credentials line -->
+					<p class="reveal reveal-delay-2 mt-6 text-sm text-text-secondary/70 font-mono">
+						President & CEO, Reynolds Foundation · Lecturer, Cornell · Founder, BLISS Summit & DemoLab · Featured at Oslo Freedom Forum, SALT, Atlas Network, and beyond
+					</p>
+
+					<!-- CTAs -->
+					<div class="reveal reveal-delay-3 mt-10 flex flex-wrap gap-5">
+						<a href="/ideas/the-mispricing-of-freedom" class="btn-primary">
+							Read the Thesis
+							<svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+						</a>
+						<a href="/speaking" class="btn-secondary">
+							Book Alvaro
+						</a>
+					</div>
 				</div>
-				<div>
-					<span class="text-3xl font-bold text-amber">62+</span>
-					<p class="text-sm text-text-secondary">Countries</p>
-				</div>
-				<div>
-					<span class="text-3xl font-bold text-amber">$60M+</span>
-					<p class="text-sm text-text-secondary">Deployed to Freedom</p>
+
+				<!-- Portrait -->
+				<div class="hidden md:block reveal reveal-delay-2 flex-shrink-0">
+					<Image
+						src={alvaroPhoto}
+						alt="Dr. Alvaro A. Salas-Castro"
+						width={420}
+						class="rounded-sm"
+						style="filter: brightness(1.1) contrast(1.05);"
+					/>
 				</div>
 			</div>
+		</div>
 
-			<!-- CTAs -->
-			<div class="mt-10 flex flex-wrap gap-4">
-				<a href="/ideas" class="inline-flex items-center gap-2 rounded-sm bg-amber px-6 py-3 text-sm font-semibold text-bg transition-colors hover:bg-amber-hover">
-					Read the Thesis
-					<svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-				</a>
-				<a href="/speaking" class="inline-flex items-center gap-2 rounded-sm border border-text-secondary px-6 py-3 text-sm font-semibold text-text transition-colors hover:border-amber hover:text-amber">
-					Book Alvaro
-				</a>
+		<!-- Scroll indicator -->
+		<div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
+			<span class="text-[10px] uppercase tracking-[0.2em] text-text-secondary">Scroll</span>
+			<div class="h-8 w-px bg-gradient-to-b from-amber to-transparent"></div>
+		</div>
+	</section>
+
+
+	<!-- ═══════════════════════════════════════════════════════════ -->
+	<!-- START HERE — The Manifesto                                 -->
+	<!-- ═══════════════════════════════════════════════════════════ -->
+	<section class="relative py-20 overflow-hidden">
+		<div class="orb orb-amber w-[500px] h-[500px] top-0 right-0 opacity-30" aria-hidden="true"></div>
+
+		<div class="mx-auto max-w-6xl px-6">
+			<div class="section-divider mb-12"></div>
+
+			<div class="grid gap-12 md:grid-cols-[1fr_1.5fr] md:gap-20">
+				<!-- Left column -->
+				<div class="reveal">
+					<span class="tag mb-6">Start Here</span>
+					<h2 class="text-4xl font-bold leading-tight md:text-5xl">
+						The Mispricing<br/>
+						<span class="gradient-text">of Freedom</span>
+					</h2>
+				</div>
+
+				<!-- Right column -->
+				<div class="space-y-6">
+					<p class="reveal reveal-delay-1 text-lg leading-relaxed text-text-secondary">
+						Less than 1% of U.S. charitable giving goes to freedom and democracy work. This represents
+						a massive misallocation. Freedom is the foundational infrastructure that makes all other
+						philanthropic goals possible.
+					</p>
+
+					<div class="reveal reveal-delay-2 pull-quote my-8">
+						If we want to defeat dictators and reclaim the future of freedom, we must stop
+						reacting and start investing.
+					</div>
+
+					<p class="reveal reveal-delay-3 text-lg leading-relaxed text-text-secondary">
+						Observable freedom and democratic outcomes improve market performance over time. Family offices
+						can identify and invest in "freedom alpha" as a measurable metric. Robust institutions and
+						rule of law create 20%+ GDP growth over 25 years and attract capital.
+					</p>
+
+					<a href="/ideas/the-mispricing-of-freedom" class="reveal reveal-delay-4 mt-4 inline-flex items-center gap-2 text-sm font-semibold text-amber hover:underline underline-offset-4">
+						Read the full thesis
+						<svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+					</a>
+				</div>
 			</div>
-		</section>
+		</div>
+	</section>
 
-		<!-- Start Here -->
-		<section class="border-t border-border py-20">
-			<h2 class="mb-2 text-xs font-semibold uppercase tracking-wider text-amber">Start Here</h2>
-			<h3 class="text-3xl font-bold md:text-4xl">The Mispricing of Freedom</h3>
-			<div class="mt-6 max-w-2xl space-y-4 text-text-secondary leading-relaxed">
-				<p>
-					Less than 1% of U.S. charitable giving goes to democracy and freedom work. This represents
-					a massive misallocation. Freedom is the foundational infrastructure that makes all other
-					philanthropic goals possible.
-				</p>
-				<p>
-					Observable democratic and liberty outcomes improve market performance over time. Family offices
-					can identify and invest in "freedom alpha" as a measurable metric. Robust institutions and
-					rule of law create 20%+ GDP growth over 25 years and attract capital.
-				</p>
-				<p>
-					If we want to defeat dictators and reclaim the future of freedom, we must stop
-					reacting — and start investing.
-				</p>
-			</div>
-			<a href="/ideas" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-amber hover:underline">
-				Read the full thesis
-				<svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-			</a>
-		</section>
 
-		<!-- Latest -->
-		{latest.length > 0 && (
-			<section class="border-t border-border py-20">
-				<h2 class="mb-2 text-xs font-semibold uppercase tracking-wider text-amber">Latest</h2>
-				<h3 class="mb-10 text-3xl font-bold">Recent Ideas, Talks & Conversations</h3>
-				<div class="grid gap-6 md:grid-cols-2">
-					{latest.map((item) => (
-						<ContentCard
-							title={item.title}
-							description={item.description}
-							date={item.date}
-							topic={item.topic}
-							href={item.href}
-							type={item.type}
-						/>
+	<!-- ═══════════════════════════════════════════════════════════ -->
+	<!-- LATEST — Content feed                                      -->
+	<!-- ═══════════════════════════════════════════════════════════ -->
+	{latest.length > 0 && (
+		<section class="relative py-20">
+			<div class="mx-auto max-w-6xl px-6">
+				<div class="section-divider mb-12"></div>
+
+				<div class="reveal flex items-end justify-between mb-10">
+					<div>
+						<span class="tag mb-4">Latest</span>
+						<h2 class="text-3xl font-bold md:text-4xl">Recent Ideas, Talks & Conversations</h2>
+					</div>
+					<a href="/ideas" class="hidden md:inline-flex items-center gap-2 text-sm font-semibold text-amber hover:underline underline-offset-4">
+						View all
+						<svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+					</a>
+				</div>
+
+				<div class="grid gap-5 md:grid-cols-2">
+					{latest.map((item, i) => (
+						<div class={`reveal reveal-delay-${i + 1}`}>
+							<ContentCard
+								title={item.title}
+								description={item.description}
+								date={item.date}
+								topic={item.topic}
+								href={item.href}
+								type={item.type}
+							/>
+						</div>
 					))}
 				</div>
-			</section>
-		)}
+			</div>
+		</section>
+	)}
 
-		<!-- Projects -->
-		<section class="border-t border-border py-20">
-			<h2 class="mb-2 text-xs font-semibold uppercase tracking-wider text-amber">Projects</h2>
-			<h3 class="mb-10 text-3xl font-bold">Building Freedom Infrastructure</h3>
-			<div class="grid gap-6 md:grid-cols-2">
+
+	<!-- ═══════════════════════════════════════════════════════════ -->
+	<!-- PROJECTS — Card grid with glow                             -->
+	<!-- ═══════════════════════════════════════════════════════════ -->
+	<section class="relative py-20 overflow-hidden">
+		<div class="orb orb-red w-[500px] h-[500px] -bottom-40 right-20 opacity-30" aria-hidden="true"></div>
+
+		<div class="mx-auto max-w-6xl px-6">
+			<div class="section-divider mb-12"></div>
+
+			<div class="reveal mb-10">
+				<span class="tag mb-4">Projects</span>
+				<h2 class="text-3xl font-bold md:text-4xl">Building Freedom Infrastructure</h2>
+			</div>
+
+			<div class="grid gap-5 md:grid-cols-2">
 				{[
 					{
 						name: 'BLISS Summit',
-						desc: 'Annual invitation-only gathering of 100+ leaders — philanthropists, technologists, artists, and dissidents — deploying capital to freedom initiatives.',
+						desc: 'Annual invitation-only gathering of 100+ leaders (philanthropists, technologists, artists, and dissidents) deploying capital to freedom initiatives.',
 						href: '/projects/bliss-summit',
+						stat: '$100M+',
+						statLabel: 'Capital deployed',
 					},
 					{
-						name: 'Reynolds Freedom Accelerator',
+						name: 'Freedom Accelerator',
 						desc: 'Three-pillar model: Freedom Fellows, Freedom Academy, and Executive Academy. Focused on 10 most at-risk democracies.',
 						href: '/projects/reynolds-freedom-accelerator',
+						stat: '10',
+						statLabel: 'Target democracies',
 					},
 					{
 						name: 'DemoLab Foundation',
 						desc: 'Costa Rica-based civic innovation think tank. Freedom Curriculum, FWD Tech program, and the Nosara Research Project.',
 						href: '/projects/demolab-foundation',
+						stat: '3',
+						statLabel: 'Active programs',
 					},
 					{
 						name: 'The Reynolds Foundation',
-						desc: '90+ organizations funded across 62+ countries. $60M+ deployed to advance democratic governance and rule of law.',
+						desc: '90+ organizations funded across 62+ countries. $60M+ deployed to advance freedom, rule of law, and democratic governance.',
 						href: '/projects/the-reynolds-foundation',
+						stat: '90+',
+						statLabel: 'Orgs funded',
 					},
-				].map(({ name, desc, href }) => (
-					<a href={href} class="group rounded-sm border border-border bg-surface p-6 transition-all hover:border-amber/30 hover:bg-surface-hover">
-						<h4 class="text-lg font-bold group-hover:text-amber transition-colors">{name}</h4>
-						<p class="mt-2 text-sm text-text-secondary leading-relaxed">{desc}</p>
-						<span class="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-amber opacity-0 transition-opacity group-hover:opacity-100">
-							Learn more
+				].map(({ name, desc, href, stat, statLabel }, i) => (
+					<a href={href} class={`reveal reveal-delay-${i + 1} group card-glow rounded-sm p-7 block`}>
+						<div class="flex items-start justify-between">
+							<h3 class="text-xl font-bold transition-colors group-hover:text-amber">{name}</h3>
+							<div class="text-right">
+								<span class="text-2xl font-bold text-amber">{stat}</span>
+								<p class="text-[10px] uppercase tracking-wider text-text-secondary">{statLabel}</p>
+							</div>
+						</div>
+						<p class="mt-3 text-sm text-text-secondary leading-relaxed">{desc}</p>
+						<div class="mt-5 flex items-center gap-1.5 text-xs font-semibold text-amber opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-1">
+							Explore
 							<svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-						</span>
+						</div>
 					</a>
 				))}
 			</div>
-		</section>
+		</div>
+	</section>
 
-		<!-- Speaking -->
-		<section class="border-t border-border py-20">
-			<h2 class="mb-2 text-xs font-semibold uppercase tracking-wider text-amber">Speaking</h2>
-			<h3 class="text-3xl font-bold">Bringing the Message to Stages Worldwide</h3>
-			<p class="mt-4 max-w-2xl text-text-secondary">
-				From the Oslo Freedom Forum to TEDx Vancouver, Alvaro speaks on freedom investing,
-				democratic resilience, and the moral case for institutional reform.
-			</p>
-			<div class="mt-8 flex flex-wrap gap-4 text-sm text-text-secondary">
+
+	<!-- ═══════════════════════════════════════════════════════════ -->
+	<!-- SPEAKING — Dramatic CTA section                            -->
+	<!-- ═══════════════════════════════════════════════════════════ -->
+	<section class="relative py-20 overflow-hidden">
+		<div class="orb orb-amber w-[800px] h-[800px] -top-60 left-1/2 -translate-x-1/2 opacity-20" aria-hidden="true"></div>
+
+		<div class="mx-auto max-w-6xl px-6">
+			<div class="section-divider mb-12"></div>
+
+			<div class="reveal text-center">
+				<span class="tag mb-6">Speaking</span>
+				<h2 class="text-4xl font-bold md:text-5xl lg:text-6xl">
+					Bringing the Message to<br/>
+					<span class="gradient-text">Stages Worldwide</span>
+				</h2>
+				<p class="mx-auto mt-6 max-w-2xl text-lg text-text-secondary">
+					From the Oslo Freedom Forum to TEDx Vancouver, Alvaro speaks on freedom investing,
+					free institutions, and the moral case for institutional reform.
+				</p>
+			</div>
+
+			<!-- Event tags -->
+			<div class="reveal reveal-delay-2 mt-12 flex flex-wrap justify-center gap-3">
 				{['Oslo Freedom Forum', 'SALT Conference', 'Atlas Network', 'TEDx Vancouver', 'Cornell Brooks School', 'BLISS Summit'].map((event) => (
-					<span class="rounded-sm border border-border px-3 py-1">{event}</span>
+					<span class="tag">{event}</span>
 				))}
 			</div>
-			<a href="/speaking" class="mt-8 inline-flex items-center gap-2 rounded-sm bg-red px-6 py-3 text-sm font-semibold text-text transition-colors hover:bg-red-hover">
-				Invite Alvaro to Speak
-			</a>
-		</section>
-	</div>
+
+			<!-- CTA -->
+			<div class="reveal reveal-delay-3 mt-12 text-center">
+				<a href="/speaking" class="btn-danger glow-red">
+					Invite Alvaro to Speak
+					<svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+				</a>
+			</div>
+		</div>
+	</section>
+
 </BaseLayout>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- ANIMATIONS — GSAP + Scroll Reveal                          -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<script>
+	import { gsap } from 'gsap';
+	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+	gsap.registerPlugin(ScrollTrigger);
+
+	// Intersection Observer for reveal animations (more reliable than ScrollTrigger for CSS-based reveals)
+	const observer = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('revealed');
+					observer.unobserve(entry.target);
+				}
+			});
+		},
+		{ threshold: 0.1, rootMargin: '0px 0px -10% 0px' }
+	);
+
+	document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+	// Animate stat counters when they come into view
+	const counterObserver = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					const el = entry.target;
+					const target = parseInt(el.getAttribute('data-count') || '0');
+					const obj = { val: 0 };
+					gsap.to(obj, {
+						val: target,
+						duration: 2,
+						ease: 'power2.out',
+						onUpdate: () => {
+							(el as HTMLElement).textContent = Math.round(obj.val).toString();
+						},
+					});
+					counterObserver.unobserve(el);
+				}
+			});
+		},
+		{ threshold: 0.5 }
+	);
+
+	document.querySelectorAll('.stat-number[data-count]').forEach((el) => counterObserver.observe(el));
+
+	// Subtle parallax on ambient orbs
+	document.querySelectorAll('.orb').forEach((orb) => {
+		gsap.to(orb, {
+			y: () => Math.random() * 100 - 50,
+			scrollTrigger: {
+				trigger: orb.parentElement,
+				start: 'top bottom',
+				end: 'bottom top',
+				scrub: 1,
+			},
+		});
+	});
+</script>
