@@ -1,0 +1,25 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+	const ideas = await getCollection('ideas');
+	return ideas.map((idea) => ({
+		params: { slug: idea.id },
+		props: idea,
+	}));
+}
+
+const idea = Astro.props;
+const { Content } = await render(idea);
+---
+
+<ContentLayout
+	title={idea.data.title}
+	description={idea.data.description}
+	pubDate={idea.data.pubDate}
+	updatedDate={idea.data.updatedDate}
+	topic={idea.data.topic}
+>
+	<Content />
+</ContentLayout>

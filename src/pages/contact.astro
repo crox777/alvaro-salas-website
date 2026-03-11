@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Contact" description="Get in touch with Alvaro Salas-Castro for speaking engagements, partnerships, and media inquiries.">
+	<div class="mx-auto max-w-2xl px-6 py-16">
+		<header class="mb-12">
+			<h1 class="text-4xl font-bold md:text-5xl">Contact</h1>
+			<p class="mt-4 text-lg text-text-secondary">
+				For speaking engagements, partnerships, media inquiries, and collaborations.
+			</p>
+		</header>
+
+		<form
+			action="https://formspree.io/f/placeholder"
+			method="POST"
+			class="space-y-6"
+		>
+			<div>
+				<label for="name" class="mb-2 block text-sm font-medium">Name</label>
+				<input
+					type="text"
+					id="name"
+					name="name"
+					required
+					class="w-full rounded-sm border border-border bg-surface px-4 py-3 text-text placeholder:text-text-secondary focus:border-amber focus:outline-none focus:ring-1 focus:ring-amber"
+					placeholder="Your name"
+				/>
+			</div>
+
+			<div>
+				<label for="email" class="mb-2 block text-sm font-medium">Email</label>
+				<input
+					type="email"
+					id="email"
+					name="email"
+					required
+					class="w-full rounded-sm border border-border bg-surface px-4 py-3 text-text placeholder:text-text-secondary focus:border-amber focus:outline-none focus:ring-1 focus:ring-amber"
+					placeholder="your@email.com"
+				/>
+			</div>
+
+			<div>
+				<label for="subject" class="mb-2 block text-sm font-medium">Subject</label>
+				<select
+					id="subject"
+					name="subject"
+					class="w-full rounded-sm border border-border bg-surface px-4 py-3 text-text focus:border-amber focus:outline-none focus:ring-1 focus:ring-amber"
+				>
+					<option value="speaking">Speaking Engagement</option>
+					<option value="media">Media / Press Inquiry</option>
+					<option value="partnership">Partnership / Collaboration</option>
+					<option value="other">Other</option>
+				</select>
+			</div>
+
+			<div>
+				<label for="message" class="mb-2 block text-sm font-medium">Message</label>
+				<textarea
+					id="message"
+					name="message"
+					rows="5"
+					required
+					class="w-full rounded-sm border border-border bg-surface px-4 py-3 text-text placeholder:text-text-secondary focus:border-amber focus:outline-none focus:ring-1 focus:ring-amber resize-y"
+					placeholder="Tell us about your event, project, or inquiry..."
+				></textarea>
+			</div>
+
+			<button
+				type="submit"
+				class="w-full rounded-sm bg-amber px-6 py-3 text-sm font-semibold text-bg transition-colors hover:bg-amber-hover"
+			>
+				Send Message
+			</button>
+		</form>
+
+		<!-- Alternative contact -->
+		<div class="mt-12 border-t border-border pt-8">
+			<p class="text-sm text-text-secondary">
+				You can also reach out directly via
+				<a href="https://www.linkedin.com/in/%C3%A1lvaro-a-salas-castro-ph-d-b53a8314/" target="_blank" rel="noopener" class="text-amber hover:underline">LinkedIn</a>
+				or
+				<a href="https://x.com/AlvaroSalas" target="_blank" rel="noopener" class="text-amber hover:underline">X (@AlvaroSalas)</a>.
+			</p>
+		</div>
+	</div>
+</BaseLayout>

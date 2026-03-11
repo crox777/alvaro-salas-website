@@ -1,63 +1,105 @@
 ---
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
-import Layout from '../layouts/BlogPost.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<Layout
-	title="About Me"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('August 08 2021')}
-	heroImage={AboutHeroImage}
->
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
-		viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-		adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
-		et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-		vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-		sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
-	</p>
+<BaseLayout title="About" description="Dr. Alvaro A. Salas-Castro — President & CEO of The Reynolds Foundation, Cornell lecturer, and advocate for making freedom investible.">
+	<div class="mx-auto max-w-4xl px-6 py-16">
+		<header class="mb-16">
+			<h1 class="text-4xl font-bold md:text-5xl">About</h1>
+			<p class="mt-4 text-xl text-text-secondary">
+				From crowdfunding an Ivy League education to leading a foundation deploying $60M+ to freedom.
+			</p>
+		</header>
 
-	<p>
-		Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non
-		tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non
-		blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna
-		porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis
-		massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-		Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis
-		bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra
-		massa massa ultricies mi.
-	</p>
+		<!-- Bio -->
+		<section class="prose max-w-none">
+			<p class="text-lg leading-relaxed text-text">
+				Dr. Alvaro A. Salas-Castro is the President & CEO of The Reynolds Foundation and the Reynolds
+				Family Office, where he leads a mission to make freedom investible. Under his leadership, the
+				Foundation has funded 90+ organizations across 62+ countries, deploying over $60 million to
+				advance democratic governance, rule of law, and institutional reform.
+			</p>
+			<p class="text-lg leading-relaxed text-text">
+				A Costa Rican-born lawyer, economist, and public policy scholar, Alvaro's career spans
+				government advising, international development, and academic leadership. He serves as a
+				Lecturer at Cornell's Jeb E. Brooks School of Public Policy, teaching "Navigating
+				Public-Private Partnerships," and holds affiliate faculty positions at Syracuse University's
+				Maxwell School and INCAE Business School.
+			</p>
+		</section>
 
-	<p>
-		Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl
-		suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet
-		nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae
-		turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem
-		dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat
-		semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-		vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum
-		facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam
-		vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla
-		urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
-	</p>
+		<!-- Timeline -->
+		<section class="mt-20">
+			<h2 class="mb-8 text-2xl font-bold">Career Timeline</h2>
+			<div class="relative border-l-2 border-border pl-8 space-y-10">
+				{[
+					{ year: 'Present', title: 'President & CEO', org: 'The Reynolds Foundation & Reynolds Family Office', desc: 'Leading freedom investment strategy. 90+ orgs funded, 62+ countries, $60M+ deployed.' },
+					{ year: 'Present', title: 'Lecturer', org: 'Cornell Jeb E. Brooks School of Public Policy', desc: 'Teaching "Navigating Public-Private Partnerships" in the Executive MPA program.' },
+					{ year: 'Present', title: 'Founder & Host', org: 'BLISS Summit', desc: 'Annual invitation-only gathering of 100+ leaders deploying capital to freedom.' },
+					{ year: '2020', title: 'Founder & Emeritus Chairman', org: 'DemoLab Foundation', desc: 'Costa Rica-based civic innovation think tank. Freedom Curriculum, FWD Tech, Nosara Research Project.' },
+					{ year: '2018', title: 'Affiliate Faculty', org: 'Syracuse Maxwell School & INCAE Business School', desc: 'Teaching and research on public-private partnerships and institutional reform.' },
+					{ year: '2014', title: 'MPA, Cornell University', org: 'Science, Technology & Infrastructure', desc: 'Graduated with highest honors. First Latin American President of the Cornell Public Affairs Society.' },
+					{ year: 'Prior', title: 'Government Advisor & Consultant', org: 'Panama, Costa Rica, IDB, UN, Grameen', desc: 'Special Advisor to governments. Consultant for Inter-American Development Bank, United Nations (UNDESA), and Grameen Creative Lab.' },
+				].map(({ year, title, org, desc }) => (
+					<div class="relative">
+						<div class="absolute -left-[calc(2rem+5px)] top-1.5 h-2.5 w-2.5 rounded-full bg-amber" />
+						<span class="text-xs font-semibold uppercase tracking-wider text-amber">{year}</span>
+						<h3 class="mt-1 text-lg font-bold">{title}</h3>
+						<p class="text-sm font-medium text-text-secondary">{org}</p>
+						<p class="mt-1 text-sm text-text-secondary leading-relaxed">{desc}</p>
+					</div>
+				))}
+			</div>
+		</section>
 
-	<p>
-		Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper
-		viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc
-		scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur
-		gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus
-		pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-		blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id
-		cursus metus aliquam eleifend mi.
-	</p>
+		<!-- Education -->
+		<section class="mt-20">
+			<h2 class="mb-8 text-2xl font-bold">Education</h2>
+			<div class="space-y-4">
+				{[
+					{ degree: 'Ph.D., Administration, International Affairs & Public Policy', school: 'Syracuse University (Maxwell School)' },
+					{ degree: 'MPA, Science, Technology & Infrastructure', school: 'Cornell University — Highest Honors' },
+					{ degree: 'MBA, Finance, Economics & Sustainable Development', school: 'INCAE Business School — Leaders for Change Scholar' },
+					{ degree: 'J.D. (Law)', school: 'Autonomous University of Central America' },
+					{ degree: 'B.A., International Relations', school: 'Universidad Latina' },
+				].map(({ degree, school }) => (
+					<div class="rounded-sm border border-border bg-surface p-4">
+						<p class="font-bold">{degree}</p>
+						<p class="text-sm text-text-secondary">{school}</p>
+					</div>
+				))}
+			</div>
+		</section>
 
-	<p>
-		Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta
-		nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam
-		tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
-		ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
-		proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
-	</p>
-</Layout>
+		<!-- Honors -->
+		<section class="mt-20">
+			<h2 class="mb-8 text-2xl font-bold">Honors & Awards</h2>
+			<ul class="space-y-3">
+				{[
+					'First Latin American President of the Cornell Public Affairs Society',
+					'Presidential Fellow, Center for the Study of the Presidency and Congress (Washington, D.C.)',
+					'Phi Alpha Alpha National Honor Society',
+					'Cornell Adams Award for "exemplary scholarship and service in the field of public affairs"',
+				].map((honor) => (
+					<li class="flex items-start gap-3">
+						<span class="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-amber" />
+						<span class="text-text-secondary">{honor}</span>
+					</li>
+				))}
+			</ul>
+		</section>
+
+		<!-- Origin Story -->
+		<section class="mt-20 rounded-sm border border-amber/20 bg-amber/5 p-8">
+			<h2 class="text-2xl font-bold text-amber">Origin Story</h2>
+			<p class="mt-4 leading-relaxed text-text-secondary">
+				As a young Costa Rican lawyer with an MBA, Alvaro crowdfunded $100,000 on Rally.org to attend
+				Cornell's MPA program — the university covered 70% of tuition. He sent donors semi-annual
+				reports on his progress. His campaign — "Alvaro Salas' Education Funding for a Peaceful Central
+				America" — became a case study in crowdfunding an Ivy League education. From there, he went on
+				to advise governments, consult for the United Nations and Inter-American Development Bank, and
+				ultimately lead The Reynolds Foundation in its mission to make freedom investible.
+			</p>
+		</section>
+	</div>
+</BaseLayout>

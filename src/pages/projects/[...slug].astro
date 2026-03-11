@@ -1,0 +1,29 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+	const projects = await getCollection('projects');
+	return projects.map((project) => ({
+		params: { slug: project.id },
+		props: project,
+	}));
+}
+
+const project = Astro.props;
+const { Content } = await render(project);
+---
+
+<ContentLayout
+	title={project.data.name}
+	description={project.data.description}
+>
+	{project.data.url && (
+		<p class="mb-8">
+			<a href={project.data.url} target="_blank" rel="noopener" class="text-sm font-semibold text-amber hover:underline">
+				Visit Project Website &rarr;
+			</a>
+		</p>
+	)}
+	<Content />
+</ContentLayout>

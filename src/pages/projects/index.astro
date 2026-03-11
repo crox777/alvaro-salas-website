@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContentCard from '../../components/ContentCard.astro';
+import { getCollection } from 'astro:content';
+
+const allProjects = await getCollection('projects');
+const projects = allProjects.sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+---
+
+<BaseLayout title="Projects" description="Initiatives led by Alvaro Salas-Castro: BLISS Summit, Reynolds Freedom Accelerator, DemoLab Foundation, and The Reynolds Foundation.">
+	<div class="mx-auto max-w-6xl px-6 py-16">
+		<header class="mb-12">
+			<h1 class="text-4xl font-bold md:text-5xl">Projects</h1>
+			<p class="mt-4 max-w-2xl text-lg text-text-secondary">
+				Building the infrastructure for a freer world — from annual summits to multi-year accelerators.
+			</p>
+		</header>
+
+		{projects.length > 0 ? (
+			<div class="grid gap-6 md:grid-cols-2">
+				{projects.map((project) => (
+					<ContentCard
+						title={project.data.name}
+						description={project.data.description}
+						href={`/projects/${project.id}`}
+						type="project"
+					/>
+				))}
+			</div>
+		) : (
+			<div class="rounded-sm border border-border bg-surface p-12 text-center">
+				<p class="text-text-secondary">Project pages coming soon.</p>
+			</div>
+		)}
+	</div>
+</BaseLayout>

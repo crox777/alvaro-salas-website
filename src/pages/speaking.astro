@@ -1,0 +1,102 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Speaking" description="Book Alvaro Salas-Castro for keynotes, panels, and presentations on freedom investing, democracy, and institutional reform.">
+	<div class="mx-auto max-w-4xl px-6 py-16">
+		<header class="mb-16">
+			<h1 class="text-4xl font-bold md:text-5xl">Speaking</h1>
+			<p class="mt-4 text-xl text-text-secondary">
+				Keynotes, panels, and presentations on freedom investing, democratic resilience, and the moral case for institutional reform.
+			</p>
+		</header>
+
+		<!-- Topics -->
+		<section class="mb-16">
+			<h2 class="mb-6 text-2xl font-bold">Topics</h2>
+			<div class="grid gap-4 md:grid-cols-2">
+				{[
+					{
+						title: 'The Mispricing of Freedom',
+						desc: 'Why less than 1% of philanthropy goes to democracy — and how to fix it. A manifesto for freedom investing.',
+					},
+					{
+						title: 'Freedom Alpha',
+						desc: 'How democratic outcomes create measurable market returns. Adding "F" to ESG for family offices and institutional investors.',
+					},
+					{
+						title: 'Building Coalitions for Liberty',
+						desc: 'Lessons from BLISS Summit: organizing 100+ leaders, deploying $100M+ in capital, and creating high-trust ecosystems.',
+					},
+					{
+						title: 'Public-Private Partnerships',
+						desc: 'Navigating the intersection of government, philanthropy, and private capital to strengthen institutions.',
+					},
+					{
+						title: 'From Costa Rica to Cornell',
+						desc: 'Crowdfunding an Ivy League education, advising governments, and leading a foundation — a story of conviction.',
+					},
+					{
+						title: 'The Next Generation of Freedom Funding',
+						desc: 'Bitcoin, stablecoins, and technology as tools for democratic resilience in authoritarian contexts.',
+					},
+				].map(({ title, desc }) => (
+					<div class="rounded-sm border border-border bg-surface p-5">
+						<h3 class="font-bold">{title}</h3>
+						<p class="mt-2 text-sm text-text-secondary leading-relaxed">{desc}</p>
+					</div>
+				))}
+			</div>
+		</section>
+
+		<!-- Past Events -->
+		<section class="mb-16">
+			<h2 class="mb-6 text-2xl font-bold">Selected Appearances</h2>
+			<div class="space-y-3">
+				{[
+					{ event: 'Oslo Freedom Forum', role: 'Speaker', note: '10+ years in the OFF community' },
+					{ event: 'SALT Conference', role: 'Speaker', note: 'Behavioral economics, emerging markets, PPPs' },
+					{ event: 'Atlas Network Liberty Forum', role: 'Featured Speaker', note: 'Live-taped podcast at Freedom Dinner' },
+					{ event: 'BLISS Summit', role: 'Host & Convener', note: 'Annual, Nosara, Costa Rica' },
+					{ event: 'Cornell Brooks School', role: 'Lecturer', note: 'Executive MPA program' },
+					{ event: 'Latin American Liberty Forum', role: 'Organizer', note: 'Through DemoLab Foundation' },
+				].map(({ event, role, note }) => (
+					<div class="flex items-center justify-between rounded-sm border border-border bg-surface px-5 py-3">
+						<div>
+							<span class="font-bold">{event}</span>
+							<span class="ml-2 text-xs text-text-secondary">— {role}</span>
+						</div>
+						<span class="text-xs text-text-secondary hidden md:block">{note}</span>
+					</div>
+				))}
+			</div>
+		</section>
+
+		<!-- Upcoming -->
+		<section class="mb-16">
+			<h2 class="mb-6 text-2xl font-bold">Upcoming</h2>
+			<div class="space-y-3">
+				{[
+					{ event: 'TEDx Vancouver', status: 'Invited' },
+					{ event: 'NED (National Endowment for Democracy)', status: 'Invited' },
+				].map(({ event, status }) => (
+					<div class="flex items-center justify-between rounded-sm border border-amber/20 bg-amber/5 px-5 py-3">
+						<span class="font-bold">{event}</span>
+						<span class="text-xs font-semibold uppercase tracking-wider text-amber">{status}</span>
+					</div>
+				))}
+			</div>
+		</section>
+
+		<!-- CTA -->
+		<section class="rounded-sm border border-border bg-surface p-8 text-center md:p-12">
+			<h2 class="text-3xl font-bold">Invite Alvaro to Speak</h2>
+			<p class="mt-4 text-text-secondary">
+				Available for keynotes, panels, fireside chats, and podcast interviews.
+			</p>
+			<a href="/contact" class="mt-6 inline-flex items-center gap-2 rounded-sm bg-red px-8 py-3 text-sm font-semibold text-text transition-colors hover:bg-red-hover">
+				Get in Touch
+			</a>
+		</section>
+	</div>
+</BaseLayout>

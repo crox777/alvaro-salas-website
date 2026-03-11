@@ -1,5 +1,3 @@
-// Place any global data in this file.
-// You can import this data from anywhere in your site by using the `import` keyword.
-
-export const SITE_TITLE = 'Astro Blog';
-export const SITE_DESCRIPTION = 'Welcome to my website!';
+export const SITE_TITLE = 'Alvaro Salas-Castro';
+export const SITE_DESCRIPTION = 'Making Freedom Investible — Ideas, projects, and talks from Dr. Alvaro A. Salas-Castro, President & CEO of The Reynolds Foundation.';
+export const SITE_URL = 'https://alvarosalas.org';

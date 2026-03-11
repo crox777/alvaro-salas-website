@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allPodcasts = await getCollection('podcasts');
+const podcasts = allPodcasts.sort((a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf());
+---
+
+<BaseLayout title="Podcasts" description="Podcast appearances and conversations with Alvaro Salas-Castro.">
+	<div class="mx-auto max-w-6xl px-6 py-16">
+		<header class="mb-12">
+			<h1 class="text-4xl font-bold md:text-5xl">Podcasts</h1>
+			<p class="mt-4 max-w-2xl text-lg text-text-secondary">
+				Conversations about freedom, philanthropy, behavioral economics, and what it takes to make the world freer.
+			</p>
+		</header>
+
+		{podcasts.length > 0 ? (
+			<div class="space-y-6">
+				{podcasts.map((podcast) => (
+					<div class="rounded-sm border border-border bg-surface p-6">
+						<div class="flex items-center gap-3 text-xs text-text-secondary">
+							<span class="font-semibold uppercase tracking-wider text-amber">Podcast</span>
+							<span class="text-border">|</span>
+							<span>{podcast.data.show}</span>
+							{podcast.data.duration && (
+								<>
+									<span class="text-border">|</span>
+									<span>{podcast.data.duration}</span>
+								</>
+							)}
+						</div>
+						<h3 class="mt-3 text-xl font-bold">{podcast.data.title}</h3>
+						{podcast.data.description && (
+							<p class="mt-2 text-sm text-text-secondary leading-relaxed">{podcast.data.description}</p>
+						)}
+						<div class="mt-4 flex gap-4">
+							{podcast.data.episodeUrl && (
+								<a href={podcast.data.episodeUrl} target="_blank" rel="noopener" class="text-sm font-semibold text-amber hover:underline">
+									Listen to Episode &rarr;
+								</a>
+							)}
+						</div>
+					</div>
+				))}
+			</div>
+		) : (
+			<div class="rounded-sm border border-border bg-surface p-12 text-center">
+				<p class="text-text-secondary">Podcast appearances coming soon.</p>
+			</div>
+		)}
+	</div>
+</BaseLayout>

@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContentCard from '../../components/ContentCard.astro';
+import { getCollection } from 'astro:content';
+
+const allIdeas = await getCollection('ideas');
+const ideas = allIdeas.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf());
+
+// Get unique topics for filter
+const topics = [...new Set(ideas.map((i) => i.data.topic))];
+---
+
+<BaseLayout title="Ideas" description="Essays and ideas on freedom investing, democracy, philanthropy, and institutional reform.">
+	<div class="mx-auto max-w-6xl px-6 py-16">
+		<header class="mb-12">
+			<h1 class="text-4xl font-bold md:text-5xl">Ideas</h1>
+			<p class="mt-4 max-w-2xl text-lg text-text-secondary">
+				Essays on freedom investing, democratic resilience, and the moral case for institutional reform.
+			</p>
+		</header>
+
+		<!-- Topic filter -->
+		{topics.length > 0 && (
+			<div class="mb-10 flex flex-wrap gap-3">
+				<button class="topic-filter rounded-sm border border-amber bg-amber/10 px-3 py-1 text-xs font-semibold text-amber" data-topic="all">
+					All
+				</button>
+				{topics.map((topic) => (
+					<button class="topic-filter rounded-sm border border-border px-3 py-1 text-xs font-semibold text-text-secondary hover:border-amber hover:text-amber transition-colors" data-topic={topic}>
+						{topic?.replace('-', ' ')}
+					</button>
+				))}
+			</div>
+		)}
+
+		<!-- Ideas grid -->
+		{ideas.length > 0 ? (
+			<div class="grid gap-6 md:grid-cols-2">
+				{ideas.map((idea) => (
+					<div data-topic-item={idea.data.topic}>
+						<ContentCard
+							title={idea.data.title}
+							description={idea.data.description}
+							date={idea.data.pubDate}
+							topic={idea.data.topic}
+							href={`/ideas/${idea.id}`}
+							type="idea"
+						/>
+					</div>
+				))}
+			</div>
+		) : (
+			<div class="rounded-sm border border-border bg-surface p-12 text-center">
+				<p class="text-text-secondary">Essays coming soon. Check back for new ideas on freedom investing.</p>
+			</div>
+		)}
+	</div>
+</BaseLayout>
+
+<script>
+	document.querySelectorAll('.topic-filter').forEach((btn) => {
+		btn.addEventListener('click', () => {
+			const topic = btn.getAttribute('data-topic');
+
+			// Update active button
+			document.querySelectorAll('.topic-filter').forEach((b) => {
+				b.classList.remove('border-amber', 'bg-amber/10', 'text-amber');
+				b.classList.add('border-border', 'text-text-secondary');
+			});
+			btn.classList.remove('border-border', 'text-text-secondary');
+			btn.classList.add('border-amber', 'bg-amber/10', 'text-amber');
+
+			// Filter items
+			document.querySelectorAll('[data-topic-item]').forEach((item) => {
+				if (topic === 'all' || item.getAttribute('data-topic-item') === topic) {
+					(item as HTMLElement).style.display = '';
+				} else {
+					(item as HTMLElement).style.display = 'none';
+				}
+			});
+		});
+	});
+</script>
